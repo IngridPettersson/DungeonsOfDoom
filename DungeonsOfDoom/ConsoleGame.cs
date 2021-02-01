@@ -30,7 +30,7 @@ namespace DungeonsOfDoom
 
         private void CreatePlayer()
         {
-            player = new Player(30, 0, 0);
+            player = new Player(300, 100, 0, 0);
         }
 
         private void CreateWorld()
@@ -43,10 +43,13 @@ namespace DungeonsOfDoom
                     world[x, y] = new Room();
 
                     int percentage = random.Next(0, 100);
-                    if (percentage < 10)
-                        world[x, y].Monster = new Monster(30);
+                    if (percentage < 5)
+                        world[x, y].Monster = new Zombie(300, 60, 4);
+                    else if (percentage < 10)
+                        world[x, y].Monster = new Warlock(300, 80, true);
                     else if (percentage < 20)
                         world[x, y].Item = new Item("Sword");
+
                 }
             }
         }
@@ -61,7 +64,12 @@ namespace DungeonsOfDoom
                     if (player.X == x && player.Y == y)
                         Console.Write("P");
                     else if (room.Monster != null)
-                        Console.Write("M");
+                    {
+                        if (room.Monster is Zombie)
+                            Console.Write("Z");
+                        else if (room.Monster is Warlock)
+                            Console.Write("W");
+                    }
                     else if (room.Item != null)
                         Console.Write("I");
                     else
