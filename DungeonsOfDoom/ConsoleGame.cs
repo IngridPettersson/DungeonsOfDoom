@@ -47,8 +47,10 @@ namespace DungeonsOfDoom
                         world[x, y].Monster = new Zombie(300, 60, 4);
                     else if (percentage < 10)
                         world[x, y].Monster = new Warlock(300, 80, true);
+                    else if (percentage < 15)
+                        world[x, y].Item = new ThunderHoney("Thunder Honey", 10, 200);
                     else if (percentage < 20)
-                        world[x, y].Item = new Item("Sword");
+                        world[x, y].Item = new InvisibilityCloak("Invisibility Cloak", 10, true);
 
                 }
             }
@@ -71,7 +73,12 @@ namespace DungeonsOfDoom
                             Console.Write("W");
                     }
                     else if (room.Item != null)
-                        Console.Write("I");
+                    {
+                        if(room.Item is ThunderHoney)
+                            Console.Write("T");
+                        else if(room.Item is InvisibilityCloak)
+                            Console.Write("I");
+                    }
                     else
                         Console.Write(".");
                 }
