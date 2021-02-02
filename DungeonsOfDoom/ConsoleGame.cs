@@ -33,14 +33,21 @@ namespace DungeonsOfDoom
         {
             if (world[player.X, player.Y].Item != null)
             {
-                player.backPack.Add(world[player.X, player.Y].Item);
+                player.BackPack.Add(world[player.X, player.Y].Item);
                 world[player.X, player.Y].Item = null;
             }
+            if (world[player.X, player.Y].Monster != null)
+                StartFight(player, world[player.X, player.Y].Monster);
+        }
+
+        private void StartFight(Character attacker, Character defender)
+        {
+            Console.WriteLine($"Name: {defender.Name} Health: {defender.Health} Strength: {defender.Strength}");
         }
 
         private void CreatePlayer()
         {
-            player = new Player(300, 100, 0, 0);
+            player = new Player();
         }
 
 
@@ -91,27 +98,28 @@ namespace DungeonsOfDoom
 
         private void DisplayStats()
         {
-            int honeyCount = 0;
-            int cloakCount = 0;
+            //int honeyCount = 0;
+            //int cloakCount = 0;
             Console.WriteLine($"Health: {player.Health}");
             Console.WriteLine("Collected items:");
-            foreach (var item in player.backPack)
-            {
-                if (item is ThunderHoney)
-                {
-                    honeyCount++;
-                    Console.WriteLine($"{item.Name}: {honeyCount}");
+            foreach (var item in player.BackPack)
+                Console.WriteLine(item.Name);
+            //{
+            //    if (item is ThunderHoney)
+            //    {
+            //        honeyCount++;
+            //        Console.WriteLine($"{item.Name}: {honeyCount}");
 
-                }
+            //    }
 
-                else if (item is InvisibilityCloak)
-                {
-                    cloakCount++;
-                    Console.WriteLine($"{item.Name}: {cloakCount}");
-                }
+            //    else if (item is InvisibilityCloak)
+            //    {
+            //        cloakCount++;
+            //        Console.WriteLine($"{item.Name}: {cloakCount}");
+            //    }
 
 
-            }
+            //}
         }
 
         private void AskForMovement()

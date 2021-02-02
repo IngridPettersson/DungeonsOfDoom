@@ -8,13 +8,12 @@ namespace DungeonsOfDoom
 {
     abstract class Monster : Character
     {
-        public Monster(int health, int damage, string name) : base(health, damage)
+        public Monster(string name, int health, int damage) : base(name, health, damage)
         {
-            Name = name;
+            
         }
 
-        public string Name { get; set; }
-        // Lägg till Name som property för bättre jämförelse i if statement i DisplayWorld().
+        
 
     }
 }

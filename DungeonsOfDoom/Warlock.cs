@@ -6,12 +6,23 @@ namespace DungeonsOfDoom
 {
     class Warlock : Monster
     {
-        public Warlock() : base(300, 80, "Warlock")
+        public Warlock() : base("Warlock", 300, 20)
         {
             HasMagicWand = true;
+            Intelligence = 80;
         }
 
         public bool HasMagicWand { get; set; }
+
+        public int Intelligence { get; set; }
+
+        public override void Attack(Character character)
+        {
+            if(HasMagicWand)
+                character.Health -= Intelligence;
+            else
+                character.Health -= (Intelligence/10);
+        }
 
     }
 }

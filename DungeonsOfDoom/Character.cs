@@ -6,13 +6,21 @@ namespace DungeonsOfDoom
 {
     abstract class Character
     {
-        public Character(int health, int damage)
+        public Character(string name, int health, int strength)
         {
+            Name = name;
             Health = health;
-            Damage = damage;
+            Strength = strength;
         }
 
         public int Health { get; set; }
-        public int Damage { get; set; }
+        public int Strength { get; set; }
+
+        public string Name { get; set; }
+
+        public virtual void Attack(Character character)
+        {
+
+        }
     }
 }

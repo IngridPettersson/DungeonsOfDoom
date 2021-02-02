@@ -8,15 +8,21 @@ namespace DungeonsOfDoom
 {
     class Player : Character
     {
-        public Player(int health, int damage, int x, int y) : base(health, damage)
+        public Player() : base("Player", 300, 100)
         {
-            X = x;
-            Y = y;
+            BackPack = new List<Item>();
+            X = 0;
+            Y = 0;
         }
 
         public int X { get; set; }
         public int Y { get; set; }
         // Gör List of Item till en prop och skapa en ny tom lista i konstruktorn
-        public List<Item> backPack = new List<Item>();
+        public List<Item> BackPack { get; set; }
+
+        public override void Attack(Character character)
+        {
+            character.Health -= Strength;
+        }
     }
 }
