@@ -6,10 +6,10 @@ namespace DungeonsOfDoom
 {
     class Zombie : Monster
     {
-
-        public Zombie(int health, int damage, int numberOfLimbs) : base(health, damage)
+        public Zombie() : base(300, 60, "Zombie")
         {
-            NumberOfLimbs = numberOfLimbs;
+            NumberOfLimbs = 4;       
+
         }
 
         public int NumberOfLimbs { get; set; }

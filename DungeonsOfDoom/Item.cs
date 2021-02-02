@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DungeonsOfDoom
 {
-    class Item
+    // Gör Item class abstract
+    abstract class Item
     {
         public Item(string name)
         {

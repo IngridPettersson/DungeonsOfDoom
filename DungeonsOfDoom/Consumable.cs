@@ -4,7 +4,8 @@ using System.Text;
 
 namespace DungeonsOfDoom
 {
-    class Consumable : Item
+    // Gör class Consumable abstract
+    abstract class Consumable : Item
     {
         public Consumable(string name, int duration) : base(name)
         {

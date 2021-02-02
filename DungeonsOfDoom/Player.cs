@@ -16,5 +16,7 @@ namespace DungeonsOfDoom
 
         public int X { get; set; }
         public int Y { get; set; }
+        // Gör List of Item till en prop och skapa en ny tom lista i konstruktorn
+        public List<Item> backPack = new List<Item>();
     }
 }

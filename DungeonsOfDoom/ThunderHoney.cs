@@ -6,13 +6,14 @@ namespace DungeonsOfDoom
 {
     class ThunderHoney : Consumable
     {
-        public ThunderHoney(string name, int duration, int damageBoost) : base(name, duration)
+        public ThunderHoney() : base("Thunder Honey", 10)
         {
-            DamageBoost = damageBoost;
+            DamageBoost = 200;
         }
 
         public int DamageBoost { get; set; }
 
         //Skriv metod(?) för att sänka duration efter varje drag (damageBoost blir 0 när duration når 0). Ska dmgboost minska vid varje duration?
+
     }
 }

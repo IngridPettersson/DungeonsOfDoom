@@ -6,9 +6,9 @@ namespace DungeonsOfDoom
 {
     class InvisibilityCloak : Consumable
     {
-        public InvisibilityCloak(string name, int duration, bool immortality) : base(name, duration)
+        public InvisibilityCloak() : base("Invisibility Cloak", 10)
         {
-            Immortality = immortality;
+            Immortality = true;
         }
 
         public bool Immortality { get; set; }

@@ -23,15 +23,26 @@ namespace DungeonsOfDoom
                 DisplayWorld();
                 DisplayStats();
                 AskForMovement();
+                CheckForEvent();
             } while (player.Health > 0);
 
             GameOver();
+        }
+
+        private void CheckForEvent()
+        {
+            if (world[player.X, player.Y].Item != null)
+            {
+                player.backPack.Add(world[player.X, player.Y].Item);
+                world[player.X, player.Y].Item = null;
+            }
         }
 
         private void CreatePlayer()
         {
             player = new Player(300, 100, 0, 0);
         }
+
 
         private void CreateWorld()
         {
@@ -44,18 +55,20 @@ namespace DungeonsOfDoom
 
                     int percentage = random.Next(0, 100);
                     if (percentage < 5)
-                        world[x, y].Monster = new Zombie(300, 60, 4);
+                        world[x, y].Monster = new Zombie();
                     else if (percentage < 10)
-                        world[x, y].Monster = new Warlock(300, 80, true);
+                        world[x, y].Monster = new Warlock();
                     else if (percentage < 15)
-                        world[x, y].Item = new ThunderHoney("Thunder Honey", 10, 200);
+                        world[x, y].Item = new ThunderHoney();
                     else if (percentage < 20)
-                        world[x, y].Item = new InvisibilityCloak("Invisibility Cloak", 10, true);
+                        world[x, y].Item = new InvisibilityCloak();
 
                 }
             }
         }
 
+        // Ändra is keyword till .Name med hänvisning till ny property för att jämföra typ av Item och Monster i if else statements. Kan ju skicka in samma string
+        // om vi inte vill veta i förväg vilket typ av Item/Monster.
         private void DisplayWorld()
         {
             for (int y = 0; y < world.GetLength(1); y++)
@@ -66,19 +79,9 @@ namespace DungeonsOfDoom
                     if (player.X == x && player.Y == y)
                         Console.Write("P");
                     else if (room.Monster != null)
-                    {
-                        if (room.Monster is Zombie)
-                            Console.Write("Z");
-                        else if (room.Monster is Warlock)
-                            Console.Write("W");
-                    }
+                        Console.Write(room.Monster.Name[0]);
                     else if (room.Item != null)
-                    {
-                        if(room.Item is ThunderHoney)
-                            Console.Write("T");
-                        else if(room.Item is InvisibilityCloak)
-                            Console.Write("I");
-                    }
+                        Console.Write(room.Item.Name[0]);
                     else
                         Console.Write(".");
                 }
@@ -88,7 +91,27 @@ namespace DungeonsOfDoom
 
         private void DisplayStats()
         {
+            int honeyCount = 0;
+            int cloakCount = 0;
             Console.WriteLine($"Health: {player.Health}");
+            Console.WriteLine("Collected items:");
+            foreach (var item in player.backPack)
+            {
+                if (item is ThunderHoney)
+                {
+                    honeyCount++;
+                    Console.WriteLine($"{item.Name}: {honeyCount}");
+
+                }
+
+                else if (item is InvisibilityCloak)
+                {
+                    cloakCount++;
+                    Console.WriteLine($"{item.Name}: {cloakCount}");
+                }
+
+
+            }
         }
 
         private void AskForMovement()

@@ -6,9 +6,9 @@ namespace DungeonsOfDoom
 {
     class Warlock : Monster
     {
-        public Warlock(int health,int damage, bool hasMagicWand) : base(health, damage)
+        public Warlock() : base(300, 80, "Warlock")
         {
-            HasMagicWand = hasMagicWand;
+            HasMagicWand = true;
         }
 
         public bool HasMagicWand { get; set; }

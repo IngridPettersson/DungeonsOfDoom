@@ -4,7 +4,8 @@ using System.Text;
 
 namespace DungeonsOfDoom
 {
-    class Equipment : Item
+    // Gör class Equipment abstract
+    abstract class Equipment : Item
     {
 
         public Equipment(string name, int damageBoost, int healthBoost) : base(name)
