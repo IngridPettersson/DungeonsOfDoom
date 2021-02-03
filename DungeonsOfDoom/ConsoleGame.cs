@@ -40,6 +40,9 @@ namespace DungeonsOfDoom
                 StartFight(player, world[player.X, player.Y].Monster);
         }
 
+        // Attack result kan vara en egen klass
+
+        
         private void StartFight(Character attacker, Character defender)
         {
             attacker.Attack(defender);
@@ -112,6 +115,9 @@ namespace DungeonsOfDoom
             }
         }
 
+        // Hur välja item från vår backpack? Göra switch statement med Console Readkey och sedan koppla vald key till den specifika
+        // Item-klassen? Skapa lokal variabel Item chosenItem som man sätter till det valda item genom att loopa igenom listan/dictionary
+        // och kalla på metoderna GiveEffect(); och RemoveItem för det Item som matchar....? sjukt omständigt! 
         private void ChooseItem()
         {
             Console.WriteLine("Menu...");
@@ -120,8 +126,9 @@ namespace DungeonsOfDoom
             //{
             //    case ConsoleKey.T:
             //        {
-            //            UseItem();
-            //            RemoveItemFromBackPack();
+                          
+            //            GiveEffect();
+            //            RemoveItem();
             //        }
             //        break;
 
