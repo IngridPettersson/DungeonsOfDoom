@@ -42,7 +42,18 @@ namespace DungeonsOfDoom
 
         private void StartFight(Character attacker, Character defender)
         {
-            Console.WriteLine($"Name: {defender.Name} Health: {defender.Health} Strength: {defender.Strength}");
+            attacker.Attack(defender);
+            if (defender.Health < 1)
+            {
+                world[player.X, player.Y].Monster = null;
+            }
+
+            defender.Attack(attacker);
+            if (attacker.Health < 1)
+            {
+                world[player.X, player.Y] = null;
+            }
+
         }
 
         private void CreatePlayer()
@@ -83,8 +94,13 @@ namespace DungeonsOfDoom
                 for (int x = 0; x < world.GetLength(0); x++)
                 {
                     Room room = world[x, y];
+
                     if (player.X == x && player.Y == y)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Magenta;
                         Console.Write("P");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
                     else if (room.Monster != null)
                         Console.Write(room.Monster.Name[0]);
                     else if (room.Item != null)
@@ -101,9 +117,16 @@ namespace DungeonsOfDoom
             //int honeyCount = 0;
             //int cloakCount = 0;
             Console.WriteLine($"Health: {player.Health}");
+            Console.WriteLine();
             Console.WriteLine("Collected items:");
+            Console.WriteLine("Press [U] to USE item.");
+            // Lägg in Console ReadKey för U...
             foreach (var item in player.BackPack)
                 Console.WriteLine(item.Name);
+
+            // Fixa senare.
+            //Console.WriteLine($"Name: {defender.Name} Health: {defender.Health} Strength: {defender.Strength}");
+
             //{
             //    if (item is ThunderHoney)
             //    {
