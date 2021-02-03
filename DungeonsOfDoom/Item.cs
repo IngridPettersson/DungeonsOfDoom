@@ -16,5 +16,15 @@ namespace DungeonsOfDoom
 
         public string Name { get; set; }
 
+        public virtual void UseItem()
+        {
+
+        }
+
+        public virtual void RemoveItemFromBackPack()
+        {
+
+        }
+
     }
 }

@@ -33,7 +33,7 @@ namespace DungeonsOfDoom
         {
             if (world[player.X, player.Y].Item != null)
             {
-                player.BackPack.Add(world[player.X, player.Y].Item);
+                player.BackPack.Add(world[player.X, player.Y].Item, 1);
                 world[player.X, player.Y].Item = null;
             }
             if (world[player.X, player.Y].Monster != null)
@@ -112,6 +112,27 @@ namespace DungeonsOfDoom
             }
         }
 
+        private void ChooseItem()
+        {
+            Console.WriteLine("Menu...");
+            ConsoleKeyInfo key = Console.ReadKey(true);
+            //switch (key.Key)
+            //{
+            //    case ConsoleKey.T:
+            //        {
+            //            UseItem();
+            //            RemoveItemFromBackPack();
+            //        }
+            //        break;
+
+            //    default:
+            //}
+        }
+
+
+        // Skapa metod UseItem där vi får välja vilket item vi vill använda från vår backpack... när vi valt så anropar vi metoden GetEffect som är en virtual/override method
+        // för de olika Items. Me ThunderHoney öka Health med Items damageboost... med InivisibilityCloak bli invisible.
+
         private void DisplayStats()
         {
             //int honeyCount = 0;
@@ -120,9 +141,9 @@ namespace DungeonsOfDoom
             Console.WriteLine();
             Console.WriteLine("Collected items:");
             Console.WriteLine("Press [U] to USE item.");
-            // Lägg in Console ReadKey för U...
+                
             foreach (var item in player.BackPack)
-                Console.WriteLine(item.Name);
+                Console.WriteLine($"{item.Key.Name}: {item.Value}");
 
             // Fixa senare.
             //Console.WriteLine($"Name: {defender.Name} Health: {defender.Health} Strength: {defender.Strength}");
@@ -151,9 +172,10 @@ namespace DungeonsOfDoom
             int newY = player.Y;
             bool isValidKey = true;
 
-            ConsoleKeyInfo keyInfo = Console.ReadKey();
+            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
             switch (keyInfo.Key)
             {
+                case ConsoleKey.U: ChooseItem(); break;
                 case ConsoleKey.RightArrow: newX++; break;
                 case ConsoleKey.LeftArrow: newX--; break;
                 case ConsoleKey.UpArrow: newY--; break;
