@@ -33,7 +33,7 @@ namespace DungeonsOfDoom
         {
             if (world[player.X, player.Y].Item != null)
             {
-                player.BackPack.Add(world[player.X, player.Y].Item, 1);
+                player.BackPack.Add(world[player.X, player.Y].Item);
                 world[player.X, player.Y].Item = null;
             }
             if (world[player.X, player.Y].Monster != null)
@@ -74,7 +74,7 @@ namespace DungeonsOfDoom
                 {
                     world[x, y] = new Room();
 
-                    int percentage = random.Next(0, 100);
+                    int percentage = RandomUtil.Randomizer(0, 100);
                     if (percentage < 5)
                         world[x, y].Monster = new Zombie();
                     else if (percentage < 10)
@@ -120,13 +120,14 @@ namespace DungeonsOfDoom
         // och kalla på metoderna GiveEffect(); och RemoveItem för det Item som matchar....? sjukt omständigt! 
         private void ChooseItem()
         {
+            // string chosenItem;
             Console.WriteLine("Menu...");
             ConsoleKeyInfo key = Console.ReadKey(true);
             //switch (key.Key)
             //{
             //    case ConsoleKey.T:
             //        {
-                          
+            // chosenItem = player.BackPack.Key.Name;
             //            GiveEffect();
             //            RemoveItem();
             //        }
@@ -150,7 +151,7 @@ namespace DungeonsOfDoom
             Console.WriteLine("Press [U] to USE item.");
                 
             foreach (var item in player.BackPack)
-                Console.WriteLine($"{item.Key.Name}: {item.Value}");
+                Console.WriteLine($"{item.Name}");
 
             // Fixa senare.
             //Console.WriteLine($"Name: {defender.Name} Health: {defender.Health} Strength: {defender.Strength}");

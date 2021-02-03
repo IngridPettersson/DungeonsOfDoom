@@ -10,7 +10,7 @@ namespace DungeonsOfDoom
     {
         public Player() : base("Player", 300, 100)
         {
-            BackPack = new Dictionary<Item, int>();
+            BackPack = new List<Item>();
             X = 0;
             Y = 0;
         }
@@ -18,14 +18,14 @@ namespace DungeonsOfDoom
         public int X { get; set; }
         public int Y { get; set; }
         // Gör List of Item till en prop och skapa en ny tom lista i konstruktorn
-        public Dictionary<Item, int> BackPack { get; set; }
+        public List<Item> BackPack { get; set; }
 
         public override void Attack(Character character)
         {
             character.Health -= Strength;
         }
 
-        public void UseItem(Item item)
+        public void RemoveItem(Item item)
         {
            //item.GiveEffect();
         }

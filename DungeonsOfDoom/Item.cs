@@ -16,15 +16,9 @@ namespace DungeonsOfDoom
 
         public string Name { get; set; }
 
-        public virtual void UseItem()
-        {
+        public abstract void GiveEffect(Character character);     
 
-        }
-
-        public virtual void RemoveItemFromBackPack()
-        {
-
-        }
+        
 
     }
 }

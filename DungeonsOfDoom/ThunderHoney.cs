@@ -8,12 +8,16 @@ namespace DungeonsOfDoom
     {
         public ThunderHoney() : base("Thunder Honey", 10)
         {
-            DamageBoost = 200;
+            StrengthBoost = 200;
         }
 
-        public int DamageBoost { get; set; }
+        public int StrengthBoost { get; set; }
 
-        
+        public override void GiveEffect(Character character)
+        {
+            character.Strength += StrengthBoost;
+        }
+
         //Skriv metod(?) för att sänka duration efter varje drag (damageBoost blir 0 när duration når 0). Ska dmgboost minska vid varje drag?
 
     }
